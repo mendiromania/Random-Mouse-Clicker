@@ -621,9 +621,12 @@ namespace Random_Mouse_Clicker
         * */
         private void ShowBalloonMessage(string text, string title)
         {
-            notifyIcon.BalloonTipText = text;
-            notifyIcon.BalloonTipTitle = title;
-            notifyIcon.ShowBalloonTip(1000);
+            if (!blockPopups_checkBox.Checked)
+            {
+                notifyIcon.BalloonTipText = text;
+                notifyIcon.BalloonTipTitle = title;
+                notifyIcon.ShowBalloonTip(1000);
+            }
         }
 
         /**

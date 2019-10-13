@@ -70,6 +70,7 @@
             this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.followCursor_checkBox = new System.Windows.Forms.CheckBox();
             this.orFollowCursorLabel = new System.Windows.Forms.Label();
+            this.blockPopups_checkBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericClickEveryMin)).BeginInit();
             this.groupBoxMouseMovement.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
@@ -100,7 +101,7 @@
             // buttonStart
             // 
             this.buttonStart.Enabled = false;
-            this.buttonStart.Location = new System.Drawing.Point(134, 248);
+            this.buttonStart.Location = new System.Drawing.Point(226, 250);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(75, 23);
             this.buttonStart.TabIndex = 2;
@@ -486,6 +487,7 @@
             // 
             // tabBasic
             // 
+            this.tabBasic.Controls.Add(this.blockPopups_checkBox);
             this.tabBasic.Controls.Add(this.orFollowCursorLabel);
             this.tabBasic.Controls.Add(this.followCursor_checkBox);
             this.tabBasic.Controls.Add(this.groupBoxClickEvery);
@@ -614,6 +616,16 @@
             this.orFollowCursorLabel.TabIndex = 20;
             this.orFollowCursorLabel.Text = "or";
             // 
+            // blockPopups_checkBox
+            // 
+            this.blockPopups_checkBox.AutoSize = true;
+            this.blockPopups_checkBox.Location = new System.Drawing.Point(29, 254);
+            this.blockPopups_checkBox.Name = "blockPopups_checkBox";
+            this.blockPopups_checkBox.Size = new System.Drawing.Size(144, 17);
+            this.blockPopups_checkBox.TabIndex = 21;
+            this.blockPopups_checkBox.Text = "Block windows pop-ups?";
+            this.blockPopups_checkBox.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -693,6 +705,7 @@
         private System.Windows.Forms.GroupBox groupBoxClickEvery;
         private System.Windows.Forms.CheckBox followCursor_checkBox;
         private System.Windows.Forms.Label orFollowCursorLabel;
+        private System.Windows.Forms.CheckBox blockPopups_checkBox;
     }
 }
 
