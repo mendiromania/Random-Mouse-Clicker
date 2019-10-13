@@ -8,6 +8,7 @@ namespace Random_Mouse_Clicker
 {
     static class Program
     {
+        public static bool shouldFollowMouse = false;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

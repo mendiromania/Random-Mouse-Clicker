@@ -68,6 +68,8 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.followCursor_checkBox = new System.Windows.Forms.CheckBox();
+            this.orFollowCursorLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericClickEveryMin)).BeginInit();
             this.groupBoxMouseMovement.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
@@ -86,7 +88,7 @@
             // 
             // buttonDrawArea
             // 
-            this.buttonDrawArea.Location = new System.Drawing.Point(105, 16);
+            this.buttonDrawArea.Location = new System.Drawing.Point(29, 10);
             this.buttonDrawArea.Name = "buttonDrawArea";
             this.buttonDrawArea.Size = new System.Drawing.Size(124, 23);
             this.buttonDrawArea.TabIndex = 0;
@@ -98,7 +100,7 @@
             // buttonStart
             // 
             this.buttonStart.Enabled = false;
-            this.buttonStart.Location = new System.Drawing.Point(130, 250);
+            this.buttonStart.Location = new System.Drawing.Point(134, 248);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(75, 23);
             this.buttonStart.TabIndex = 2;
@@ -153,10 +155,10 @@
             this.radioEndManually.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioEndManually.Location = new System.Drawing.Point(43, 136);
             this.radioEndManually.Name = "radioEndManually";
-            this.radioEndManually.Size = new System.Drawing.Size(128, 30);
+            this.radioEndManually.Size = new System.Drawing.Size(100, 30);
             this.radioEndManually.TabIndex = 8;
             this.radioEndManually.TabStop = true;
-            this.radioEndManually.Text = "End manually\r\n(CTRL+WIN+ESC)";
+            this.radioEndManually.Text = "End manually\r\n(Press ESC)";
             this.toolTip1.SetToolTip(this.radioEndManually, "Stop the program manually");
             this.radioEndManually.UseVisualStyleBackColor = true;
             this.radioEndManually.CheckedChanged += new System.EventHandler(this.endManuallyRadio_CheckedChanged);
@@ -212,22 +214,22 @@
             // radioFast
             // 
             this.radioFast.AutoSize = true;
+            this.radioFast.Checked = true;
             this.radioFast.Location = new System.Drawing.Point(154, 36);
             this.radioFast.Name = "radioFast";
             this.radioFast.Size = new System.Drawing.Size(45, 17);
             this.radioFast.TabIndex = 2;
+            this.radioFast.TabStop = true;
             this.radioFast.Text = "Fast";
             this.radioFast.UseVisualStyleBackColor = true;
             // 
             // radioNormal
             // 
             this.radioNormal.AutoSize = true;
-            this.radioNormal.Checked = true;
             this.radioNormal.Location = new System.Drawing.Point(86, 36);
             this.radioNormal.Name = "radioNormal";
             this.radioNormal.Size = new System.Drawing.Size(58, 17);
             this.radioNormal.TabIndex = 1;
-            this.radioNormal.TabStop = true;
             this.radioNormal.Text = "Normal";
             this.radioNormal.UseVisualStyleBackColor = true;
             // 
@@ -410,7 +412,7 @@
             this.numericClickEveryMax.TabIndex = 16;
             this.numericClickEveryMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericClickEveryMax.Value = new decimal(new int[] {
-            2,
+            10,
             0,
             0,
             0});
@@ -418,12 +420,12 @@
             // linkLabelCustomize
             // 
             this.linkLabelCustomize.AutoSize = true;
-            this.linkLabelCustomize.Location = new System.Drawing.Point(222, 270);
+            this.linkLabelCustomize.Location = new System.Drawing.Point(211, 271);
             this.linkLabelCustomize.Name = "linkLabelCustomize";
-            this.linkLabelCustomize.Size = new System.Drawing.Size(94, 13);
+            this.linkLabelCustomize.Size = new System.Drawing.Size(101, 13);
             this.linkLabelCustomize.TabIndex = 4;
             this.linkLabelCustomize.TabStop = true;
-            this.linkLabelCustomize.Text = "Customize settings";
+            this.linkLabelCustomize.Text = "Customize shortcuts";
             this.toolTip1.SetToolTip(this.linkLabelCustomize, "Change the program settings");
             this.linkLabelCustomize.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelCustomize_LinkClicked);
             // 
@@ -478,12 +480,14 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(334, 312);
+            this.tabControl1.Size = new System.Drawing.Size(334, 313);
             this.tabControl1.TabIndex = 14;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabBasic
             // 
+            this.tabBasic.Controls.Add(this.orFollowCursorLabel);
+            this.tabBasic.Controls.Add(this.followCursor_checkBox);
             this.tabBasic.Controls.Add(this.groupBoxClickEvery);
             this.tabBasic.Controls.Add(this.labelCannotBeChanged);
             this.tabBasic.Controls.Add(this.buttonDrawArea);
@@ -496,7 +500,7 @@
             this.tabBasic.Location = new System.Drawing.Point(4, 22);
             this.tabBasic.Name = "tabBasic";
             this.tabBasic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBasic.Size = new System.Drawing.Size(326, 286);
+            this.tabBasic.Size = new System.Drawing.Size(326, 287);
             this.tabBasic.TabIndex = 0;
             this.tabBasic.Text = "Basic";
             this.tabBasic.UseVisualStyleBackColor = true;
@@ -521,7 +525,7 @@
             this.tabAdvanced.Location = new System.Drawing.Point(4, 22);
             this.tabAdvanced.Name = "tabAdvanced";
             this.tabAdvanced.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAdvanced.Size = new System.Drawing.Size(326, 286);
+            this.tabAdvanced.Size = new System.Drawing.Size(326, 287);
             this.tabAdvanced.TabIndex = 1;
             this.tabAdvanced.Text = "Advanced";
             this.tabAdvanced.UseVisualStyleBackColor = true;
@@ -542,7 +546,7 @@
             this.tabPreview.Controls.Add(this.previewPictureBox);
             this.tabPreview.Location = new System.Drawing.Point(4, 22);
             this.tabPreview.Name = "tabPreview";
-            this.tabPreview.Size = new System.Drawing.Size(326, 286);
+            this.tabPreview.Size = new System.Drawing.Size(326, 287);
             this.tabPreview.TabIndex = 2;
             this.tabPreview.Text = "Preview";
             this.tabPreview.UseVisualStyleBackColor = true;
@@ -562,7 +566,7 @@
             this.previewPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.previewPictureBox.Location = new System.Drawing.Point(0, 0);
             this.previewPictureBox.Name = "previewPictureBox";
-            this.previewPictureBox.Size = new System.Drawing.Size(326, 286);
+            this.previewPictureBox.Size = new System.Drawing.Size(326, 287);
             this.previewPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.previewPictureBox.TabIndex = 0;
             this.previewPictureBox.TabStop = false;
@@ -581,21 +585,41 @@
             this.notifyMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuExit});
             this.notifyMenu.Name = "notifyMenu";
-            this.notifyMenu.Size = new System.Drawing.Size(93, 26);
+            this.notifyMenu.Size = new System.Drawing.Size(94, 26);
             // 
             // menuExit
             // 
             this.menuExit.Name = "menuExit";
-            this.menuExit.Size = new System.Drawing.Size(92, 22);
+            this.menuExit.Size = new System.Drawing.Size(93, 22);
             this.menuExit.Text = "Exit";
             this.menuExit.Click += new System.EventHandler(this.menuExit_Click_1);
+            // 
+            // followCursor_checkBox
+            // 
+            this.followCursor_checkBox.AutoSize = true;
+            this.followCursor_checkBox.Location = new System.Drawing.Point(213, 14);
+            this.followCursor_checkBox.Name = "followCursor_checkBox";
+            this.followCursor_checkBox.Size = new System.Drawing.Size(88, 17);
+            this.followCursor_checkBox.TabIndex = 19;
+            this.followCursor_checkBox.Text = "Follow cursor";
+            this.followCursor_checkBox.UseVisualStyleBackColor = true;
+            this.followCursor_checkBox.CheckedChanged += new System.EventHandler(this.followCursor_checkBox_CheckedChanged);
+            // 
+            // orFollowCursorLabel
+            // 
+            this.orFollowCursorLabel.AutoSize = true;
+            this.orFollowCursorLabel.Location = new System.Drawing.Point(173, 15);
+            this.orFollowCursorLabel.Name = "orFollowCursorLabel";
+            this.orFollowCursorLabel.Size = new System.Drawing.Size(16, 13);
+            this.orFollowCursorLabel.TabIndex = 20;
+            this.orFollowCursorLabel.Text = "or";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(334, 312);
+            this.ClientSize = new System.Drawing.Size(334, 313);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -667,6 +691,8 @@
         private System.Windows.Forms.ToolStripMenuItem menuExit;
         private System.Windows.Forms.LinkLabel linkLabelCustomize;
         private System.Windows.Forms.GroupBox groupBoxClickEvery;
+        private System.Windows.Forms.CheckBox followCursor_checkBox;
+        private System.Windows.Forms.Label orFollowCursorLabel;
     }
 }
 

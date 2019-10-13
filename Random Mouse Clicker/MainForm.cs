@@ -42,7 +42,7 @@ namespace Random_Mouse_Clicker
 
             originalFormWidth = this.Width;
             originalFormHeight = this.Height;
-            comboBoxClickEvery.SelectedIndex = 1;
+            comboBoxClickEvery.SelectedIndex = 0;
             comboBoxDuration.SelectedIndex = 0;
         }
 
@@ -54,6 +54,12 @@ namespace Random_Mouse_Clicker
             setDefaultHotkey();
             setUserHotKey(userExitHotkey, (String)Settings.Default["ExitProgramHotkey"], Hk_Exit_OnPressed);
             setUserHotKey(userStartStopHotkey, (String)Settings.Default["StartStopProgramHotkey"], Hk_Start_Stop_OnPressed);
+            
+            if (this.followCursor_checkBox.Checked)
+            {
+                Program.shouldFollowMouse = true;
+                buttonStart.Enabled = true;
+            }
         }
 
         /**
@@ -76,11 +82,13 @@ namespace Random_Mouse_Clicker
          * */
         private void startButton_Click(object sender, EventArgs e)
         {
-            x1 = SnippingTool.getDrawnRectangle().X;
-            x2 = SnippingTool.getDrawnRectangle().X + SnippingTool.getRectangleWidth();
-            y1 = SnippingTool.getDrawnRectangle().Y;
-            y2 = SnippingTool.getDrawnRectangle().Y + SnippingTool.getRectangleHeight();
-
+            if (!Program.shouldFollowMouse)
+            {
+                x1 = SnippingTool.getDrawnRectangle().X;
+                x2 = SnippingTool.getDrawnRectangle().X + SnippingTool.getRectangleWidth();
+                y1 = SnippingTool.getDrawnRectangle().Y;
+                y2 = SnippingTool.getDrawnRectangle().Y + SnippingTool.getRectangleHeight();
+            }
             checkClickInterval(comboBoxClickEvery, numericClickEveryMin.Value, numericClickEveryMax.Value);
             moveAtMouseSpeed = checkMouseSpeed();
             runManualOrAutomatic();
@@ -164,7 +172,7 @@ namespace Random_Mouse_Clicker
         {
             if (radioEndManually.Checked)
             {
-                ShowBalloonMessage("Press CTRL+WIN+ESC or your user defined hotkeys to exit/stop the program...", "Random Mouse Clicker");
+                ShowBalloonMessage("Press ESC or your user defined hotkeys to exit/stop the program...", "Random Mouse Clicker"); // Used to be CTRL+WIN+ESC
                 this.WindowState = FormWindowState.Minimized;
                 clickUntilManuallyEnded();
             }
@@ -296,13 +304,16 @@ namespace Random_Mouse_Clicker
          * */
         private void randomizeLocationAndClick()
         {
-            monitorOffset = SnippingTool.clickingScreen.Bounds.Location;
+            if (!Program.shouldFollowMouse)
+            {
+                monitorOffset = SnippingTool.clickingScreen.Bounds.Location;
 
-            location = new Point(random.Next(x1, x2), random.Next(y1, y2));
-            location.X = location.X + monitorOffset.X;
-            location.Y = location.Y + monitorOffset.Y;
+                location = new Point(random.Next(x1, x2), random.Next(y1, y2));
+                location.X = location.X + monitorOffset.X;
+                location.Y = location.Y + monitorOffset.Y;
 
-            moveAtMouseSpeed(location);
+                moveAtMouseSpeed(location);
+            }
             clickAndWait();
         }
 
@@ -629,11 +640,11 @@ namespace Random_Mouse_Clicker
          * */
         private void setDefaultHotkey()
         {
-            defaultHotkey.Control = true;
-            defaultHotkey.Windows = true;
+            //defaultHotkey.Control = true;
+            //defaultHotkey.Windows = true;
             defaultHotkey.KeyCode = Keys.Escape;
 
-            defaultHotkey.Pressed += Hk_Exit_OnPressed;
+            defaultHotkey.Pressed += Hk_Start_Stop_OnPressed; //Hk_Exit_OnPressed;
             registerHotkey(defaultHotkey);
         }
 
@@ -747,6 +758,20 @@ namespace Random_Mouse_Clicker
             unregisterHotkey(userStartStopHotkey);
             Application.Exit();
             Environment.Exit(0);
+        }
+
+        private void followCursor_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (followCursor_checkBox.Checked == true)
+            {
+                buttonStart.Enabled = true;
+                Program.shouldFollowMouse = true;
+            }
+            else
+            {
+                buttonStart.Enabled = false;
+                Program.shouldFollowMouse = false;
+            }
         }
     }
 }

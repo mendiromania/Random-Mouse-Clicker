@@ -30,7 +30,7 @@ namespace Random_Mouse_Clicker
         public static void MouseClick()
         {
             mouse_event((uint)MouseEventFlags.LEFTDOWN, 0, 0, 0, 0);
-            Thread.Sleep((new Random()).Next(20, 30));
+            Thread.Sleep((new Random()).Next(8, 18));
             mouse_event((uint)MouseEventFlags.LEFTUP, 0, 0, 0, 0);
         }
 

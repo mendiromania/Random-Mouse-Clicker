@@ -12,10 +12,13 @@ namespace Random_Mouse_Clicker
         private static readonly int speed_slow = 50;
         private static readonly int speed_normal = 20;
         private static readonly int speed_fast = 5;
-        private static readonly int speed_instant = 0;
+        private static readonly int speed_instant = 1;
 
         private static void LinearSmoothMove(Point newPosition, int steps)
         {
+            // Skip movement completly if user selected Follow mouse.
+            if (Program.shouldFollowMouse) return;
+
             Point start = Cursor.Position;
             PointF iterPoint = start;
 
